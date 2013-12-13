@@ -1,0 +1,448 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta content="IE=10.000" http-equiv="X-UA-Compatible">
+     
+<meta charset="utf-8">     <title>Phone Drone</title>     
+<meta name="viewport" content="width=device-width, initial-scale=1.0">     
+
+<link href="./index_files/startup_code_bootstrap-combined.no-icons.min.css" rel="stylesheet"> 
+<link href="./index_files/font-awesome.css" rel="stylesheet">     
+<link href="./index_files/startup_code_social-buttons.css" rel="stylesheet"> 
+       
+<script src="./index_files/cb=gapi.loaded_0" async=""></script><script src="./index_files/startup_code_jquery.js"></script>    
+<script src="./index_files/startup_code_bootstrap.js"></script>
+
+<link href="./index_files/css.css" rel="stylesheet" type="text/css">  
+<link href="./index_files/css(1).css" rel="stylesheet" type="text/css"> 
+    
+<script type="text/javascript">
+    var apiKey = 'AIzaSyCNl3JMfE07z2TP3Jh-ucEkRFSv3lZGJB4';  
+       
+    $(document).ready(function()
+    {
+      var currentLanguage = "en";
+      var translationLanguage = "de";
+      
+      $("#myTitle").text("Welcome to PhoneDrone");
+      
+      $("#myImage1").attr('src', './index_files/lost-phone.jpg');
+      $("#myImage2").attr('src', './index_files/mobile-phone-table.jpg');
+      $("#myImage3").attr('src', './index_files/flying-pigs.jpg');
+      $("#myImage4").attr('src', './index_files/phone-found.jpg');   
+                                         
+      $("#success_bar").css("width", "0%");
+      var i = 0;         
+            
+      function animateProgressBar() {       
+        if (i == 0) { 
+          $("#success_bar").css("width", "100%");
+          $("#warning_bar").css("width", "0%");
+        } else { 
+          $("#warning_bar").css("width", "100%");
+          $("#success_bar").css("width", "0%");
+        }
+        
+        i = 1-i;        
+      }
+                                       
+      function translateText(element, englishText, isHTML) {
+        var url = 'https://www.googleapis.com/language/translate/v2?key=' + apiKey + '&target=' + translationLanguage + '&source=' + currentLanguage + '&q=' + englishText;
+        
+        $.get(url, function(response) {
+          var translatedText = response.data.translations[0].translatedText;
+          
+          if (translatedText != null) {
+            if (isHTML) { element.html(translatedText); }
+            else { element.text(translatedText); }
+          }
+        });
+      }
+              
+      function translateSection(obj) {
+        $(obj).each(function(i, element) {            
+          if ((element.innerText != null) && (element.innerText > ' ')) {
+            translateText($(this), element.innerText, false);                        
+          }
+          else {
+            if (element.innerHTML != null) {
+              translateText($(this), element.innerHTML, true);
+            }
+          }
+        });
+      }
+                                         
+      $("#translationButton").click(function() {
+        if (currentLanguage == "en") {    
+          translateSection($('h1'));     
+          translateSection($('legend'));
+          translateSection($('p'));         
+          translateSection($('.accordion-toggle'));
+          translateSection($('.accordion-inner'));
+          
+          currentLanguage = translationLanguage;
+          $("#translationButton").attr("disabled", "disabled");
+          $("#translationButton").css("background-color", "#F0F0F0");
+        }
+      });
+     
+      setInterval(function() {animateProgressBar();}, 700);        
+    });
+
+ </script> 
+<script src="./index_files/client.js" gapi_processed="true"></script>    
+    
+<style type="text/css">
+
+      /* Large desktop */
+      @media (min-width: 980px) { 
+        body {
+         padding-top: 60px;
+        }
+       .linediv-l {
+         border-right: 1px white solid;
+        }
+       .linediv-r {
+         border-left: 1px white solid;
+       }
+      }
+
+      /* Landscape phones and down */
+      @media (max-width: 480px) { 
+       .copy {
+         padding: 2.5% 10%;
+       }
+       .linediv-l {
+         border-bottom: 1px white solid;
+       }
+       .linediv-r {
+         border-top: 1px white solid;
+       }
+      }
+
+      /* All form factors */
+
+      /* Main body and headings */
+      body{
+        font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+      }
+      .heading, .subheading {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+        text-align: center;
+      }
+      p.lead {
+        padding-top: 1.5%;
+        font-size: 24px;
+        line-height: 30px;
+      }
+      p {
+        font-size: 18px;
+        line-height: 24px;
+      }
+
+      /* Video pitch and Action */
+      .pitch {
+        padding: 2.5% 0%;
+      }
+      .order {
+        padding: 2% 0%;
+      }
+      .actions {
+        background-color: #343434;
+        padding: 3% 0%;
+      }
+      .video, .thermometer, .order, .social, .statistics {
+        text-align: center;
+      }
+      .statistics h3, .statistics p {
+        color: white;
+      }
+
+      /* Marketing Copy and Footer */
+      .copy {
+        padding-top: 2.5%;
+        padding-bottom: 2.5%;
+        text-align: justify;
+      }
+      .asset {
+        padding: 2.5% 0%;
+      }
+      .footer {
+        color: #cccccc;
+        text-align: center;
+      }
+      .footer p {
+        font-size: 11px;
+      }
+      .footer a {
+        color: #ccccff;
+      }
+
+	  
+
+	  
+	  
+	  
+/* Jumbotrons
+-------------------------------------------------- */
+
+/* Base class
+------------------------- */
+.jumbotron {
+  position: relative;
+  padding: 10px 0;
+  color: #fff;
+  text-align: center;
+  background: #020031; /* Old browsers */
+  background: -moz-linear-gradient(30deg,  #020031 0%, #6d3353 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#E08E80), color-stop(100%,#E08E79)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(30deg,  #E08E79 0%,#E08E80 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(30deg,  #E08E79 0%,#E08E80 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(30deg,  #E08E79 0%,#E08E80 100%); /* IE10+ */
+  background: linear-gradient(30deg,  #E08E79 0%,#E08E80 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E08E79', endColorstr='#E08E80',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.jumbotron h1 {
+  font-size: 80px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+.jumbotron p {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.25;
+  margin-bottom: 30px;
+}
+
+/* Link styles (used on .masthead-links as well) */
+.jumbotron a {
+  color: #777
+  color: rgba(255,255,255,.5);
+  -webkit-transition: all .2s ease-in-out;
+     -moz-transition: all .2s ease-in-out;
+          transition: all .2s ease-in-out;
+}
+.jumbotron a:hover {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255,255,254,.25);
+}
+
+/* Download button */
+.masthead .btn {
+  padding: 19px 24px;
+  font-size: 24px;
+  font-weight: 200;
+  color: #fff; /* redeclare to override the `.jumbotron a` */
+  border: 0;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+     -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+          box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+  -webkit-transition: none;
+     -moz-transition: none;
+          transition: none;
+}
+.masthead .btn:hover {
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+     -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+          box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+}
+.masthead .btn:active {
+  -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.1);
+     -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.1);
+          box-shadow: inset 0 2px 4px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.1);
+}
+
+  
+	.navbar-inner
+{
+background-color:#C5E0DC;
+background-image: linear-gradient(to bottom,#C5E0DC,#C5E0DC);
+background-repeat: repeat-x;
+border: 1px solid #C5E0DC;
+}
+
+.navbar .brand {
+font-size: 24px;
+  font-weight: bold;
+}
+.navbar .brand {
+display: block;
+float: left;
+margin-left: -20px;
+font-size: 20px;
+font-weight: 200;
+color: #fff;
+}
+
+.navbar .nav>li>a {
+text-shadow: none;
+}
+
+.navbar .nav>li>a {
+float: none;
+color: #fff;
+text-decoration: none;
+
+}
+
+.nav>li>a {
+
+display: block;
+}
+
+.body
+{
+font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+	
+	
+	html *
+{
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+
+}
+
+legend { margin:3px; text-align:center;width:100%; }
+
+body {
+padding-top: 0px;
+}
+
+   /* http://support.addthis.com/customer/portal/questions/1136093-share-buttons-in-center-position */      
+ div.addthis_toolbox {
+  width:240px;
+  margin: 0 auto;
+ }
+ 
+
+div.transButton {
+    font-family: "rfhb-lpmg";
+    color: #fff;
+    font-size: 3em;
+    text-align: right;  
+    position: relative;
+} 
+
+    </style>
+   
+<meta name="GENERATOR" content="MSHTML 10.00.9200.16721"></head>   
+<body style=""><!-- We use row-fluid inside containers to achieve a resizable layout. --> 
+    <!-- blogs.endjin.com/2013/04/tips-for-implementing-responsive-designs-using-bootstrap/ --> 
+    <!-- http://stackoverflow.com/a/12270322 -->     
+
+<div class="container"><!-- Font and paired font of .heading/.subheading and body from Google Fonts --> 
+      <!-- www.google.com/fonts/specimen/Ubuntu -->       <!-- www.google.com/fonts/specimen/Ubuntu#pairings --> 
+      
+<div class="transButton"><input id="translationButton" type="button" value="Translate Page
+(German)" style="text-align:center;background-color:yellow"></div>
+<div class="row-fluid heading">
+<div class="span12">
+<h1>Lost your phone?<!--<h1-->		   
+</h1><h1>Want it back?</h1>
+<h1>Let your drone pick up the slack!</h1></div></div><header class="jumbotron subhead" id="overview">
+<div class="container">
+<h1 id="myTitle">Welcome to PhoneDrone</h1></div></header>
+<div class="row-fluid subheading">
+<div class="span12"><!-- Special typography from Bootstrap for lead paragraph. --> 
+          <!-- http://twitter.github.io/bootstrap/base-css.html#typography -->   
+        
+<p class="lead"></p></div></div>
+
+<div class="container">
+<div class="row">
+<div class="span10 offset2" id="grid">
+<div class="span4"><legend id="legend1">Can't find my phone</legend><img id="myImage1" class="img-polaroid" alt="cant find my phone" src="./index_files/lost-phone.jpg">				 </div>
+<div class="span4"><legend id="legend2">It's all the way over there</legend><img id="myImage2" class="img-polaroid" alt="phone is over on table" src="./index_files/mobile-phone-table.jpg">				 </div>
+<div class="span4"><legend>Phonedrone seeks and finds</legend><img id="myImage3" class="img-polaroid" alt="drone flies over phone and locates it" src="./index_files/flying-pigs.jpg">
+				 </div>
+<div class="span4"><legend>Phonedrone brings it back - Success!</legend>
+<img id="myImage4" class="img-polaroid" alt="drone picks up phone and brings it back to user" src="./index_files/phone-found.jpg">
+				 </div></div></div></div><!-- Fetchol.io -->       
+<div class="row-fluid pitch"><!-- We define a new 'actions' div to contain statistics, order, and share buttons.--> 
+        
+<div class="span8 offset2 actions">
+<div class="span8 offset2">
+<div class="statistics">
+<div class="span4"><!-- linediv-l and linediv-r give dividing lines that look
+                different in horizontal and vertical layouts, illustrating
+                media queries. --> 
+                
+<div class="linediv-l">
+<h3>100</h3>
+<p>backers</p></div></div>
+<div class="span4">
+<div class="linediv-c">
+<h3>$5000</h3>
+<p>of $10,000</p></div></div>
+<div class="span4">
+<div class="linediv-r">
+<h3>30</h3>
+<p>days left</p></div></div></div></div>
+<div id="progressBar" class="span10 offset1"><!-- Bootstrap progress bar -->             <!-- http://twitter.github.io/bootstrap/components.html#progress --> 
+            
+<div class="thermometer progress active" style="background-color: #000; color: #000;">
+<div id="success_bar" class="bar bar-success" style="width: 100%;"></div>
+<div id="warning_bar" class="bar bar-warning" style="width: 0%;"></div></div></div>
+<div class="span8 offset2 social"><!-- AddThis Button BEGIN -->				 
+<div class="addthis_toolbox addthis_default_style addthis_32x32_style"><a class="addthis_button_preferred_1"></a>
+				 <a class="addthis_button_preferred_2"></a>				 <a class="addthis_button_preferred_3"></a>
+				 <a class="addthis_button_preferred_4"></a>				 <a class="addthis_button_compact"></a>
+				 <a class="addthis_counter addthis_bubble_style"></a>				 </div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+				 
+<!--<SCRIPT src="index_files/addthis_widget.js" type="text/javascript"></SCRIPT>-->
+				 <!-- AddThis Button END -->           </div>
+<div class="span8 offset2"><iframe src="./index_files/852b309b5eaf6edeedb243b42091ebb8.htm" id="coinbase_button_iframe_852b309b5eaf6edeedb243b42091ebb8" name="coinbase_button_iframe_852b309b5eaf6edeedb243b42091ebb8" style="width: 249px; height: 46px; border: none; overflow: hidden;" scrolling="no" allowtransparency="true" frameborder="0"></iframe>
+<script src="./index_files/button.js" type="text/javascript"></script>
+		   </div></div></div><!-- Beyond this part the marketing copy begins. -->      
+ <!-- https://developer.mozilla.org/en-US/docs/Web/CSS/text-align -->       <!-- http://twitter.github.io/bootstrap/base-css.html#images --> 
+      <!-- http://placehold.it -->  
+<div class="row-fluid section1">
+<div class="span10 offset1">
+<p>		  Phonedrone is our revolutionary software which enables your drone to 
+seek-and-locate your mobile phone, and transmit its location to your PC or 
+smartphone. With "The Claw" add on, your drone can even carry your phone back to 
+you - wherever you are!			 </p></div></div>
+<div class="row-fluid section2">
+<div class="span10 offset1">
+<p>              Phonedrone learns the layout of your home, apartment or 
+workplace, as you walk it thorugh and teach it the names for each room or area. 
+It also learns to recognise your most used possessions, as you tag and name them 
+in our special software. Phonedrone can then fly round, seek-and-locating these 
+possessions, transmitting their location back to your PC or smartphone, and with 
+"The Claw"  addon returning them back to your hand.           </p></div></div><!-- For the FAQ, we introduce a little bit of JS, using the accordion. --> 
+      <!-- This brings in jquery.js and bootstrap.js as dependencies. -->       <!-- http://twitter.github.io/bootstrap/javascript.html#collapse --> 
+      
+<div class="row-fluid faq">
+<div class="span10 offset1">
+<h3>FAQ</h3>
+<div class="accordion" id="accordion2">
+<div class="accordion-group">
+<div id="accordionHeading1" class="accordion-heading"><a class="accordion-toggle" href="https://rawgithub.com/jpritchett/bitstarter/master/index.html#collapseOne" data-parent="#accordion2" data-toggle="collapse">                    The Claw  
+                 </a></div>
+<div class="accordion-body collapse" id="collapseOne">
+<div id="accordionText1" class="accordion-inner">				  "The Claw" is our hardware add on which you 
+mounts on your drone and gives it the ability to grip and release objects from 
+the size of a credit card up to the size of smartphone. It's currently in the 
+early stages of testing and we'll be posting progress shots here as it develops. 
+                  </div></div></div>
+<div id="accordion2" class="accordion-group">
+<div class="accordion-heading"><a class="accordion-toggle" href="https://rawgithub.com/jpritchett/bitstarter/master/index.html#collapseTwo" data-parent="#accordion2" data-toggle="collapse">                    So how does phone drone work?                   </a></div>
+<div class="accordion-body collapse" id="collapseTwo">
+<div id="accordionText2" class="accordion-inner">                    Phonedrone learns the layout of 
+your home, apartment or workplace, as you walk it thorugh and teach it the names 
+for each room. It also learns to recognise your favourite possessions, as you 
+tag  them in our  software. Phonedrone can then fly round, seek-and-locating 
+these possessions, transmitting their location back to your PC or smartphone, 
+and with "The Claw"  addon returning them back to you.                   
+</div></div></div></div></div></div><!-- Not crucial, but we put this under a CC By-SA 3.0 license. --> 
+      <!-- http://creativecommons.org/licenses/ -->       
+<div class="row-fluid footer">
+<div class="span12">
+<p>This work is licensed under            the <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC 
+             By-SA 3.0             </a>, without all the cruft that would 
+otherwise be            put at the bottom of the 
+page.</p></div></div></div>
+<iframe name="oauth2relay606116274" id="oauth2relay606116274" src="./index_files/postmessageRelay.htm" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><iframe src="./index_files/widget.htm" id="coinbase_modal_iframe_852b309b5eaf6edeedb243b42091ebb8" name="coinbase_modal_iframe_852b309b5eaf6edeedb243b42091ebb8" style="background-color: transparent; border: 0px none transparent; overflow: hidden; display: none; position: fixed; visibility: visible; margin: 0px; padding: 0px; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 9999;" scrolling="no" allowtransparency="true" frameborder="0"></iframe></body></html>
